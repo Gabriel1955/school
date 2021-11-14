@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.divLogin {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  padding-top: 20%;
+
+}

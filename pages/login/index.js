@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Form, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import styles from '../../styles/Home.module.css'
+// import Styles from '../../styles/login/index.css'
 
 export default function Home() {
   const onFinish = (values) => {
@@ -13,9 +13,19 @@ export default function Home() {
     console.log('Failed:', errorInfo);
   };
 
-
+const login = async () => {
+  const resultado = await fetch('http://gabrielpaulinotoledo.mocklab.io/login')
+  if(resultado.status != 200){
+    onFinishFailed(resultado.status)
+  }else {
+    const data = await resultado.json()
+    onFinish(data)
+  }
+  
+}
   return (
-<Form
+  <div class="divLogin">
+  <Form
       name="basic"
       labelCol={{
         span: 8,
@@ -73,10 +83,11 @@ export default function Home() {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" onClick={(event)=>login()}>
           Submit
         </Button>
       </Form.Item>
-    </Form>  )
+    </Form> 
+    </div> )
 
 }
